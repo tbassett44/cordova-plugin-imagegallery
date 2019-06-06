@@ -90,7 +90,7 @@ import AVKit
         let url = NSURL(string: NSTemporaryDirectory())
         let imagePath = url!.appendingPathComponent(imageName)
         let urlString: String = imagePath!.absoluteString
-        let imageData = UIImageJPEGRepresentation(image, CGFloat(self.args.quality ?? 1.0))
+        let imageData = UIImageJPEGRepresentation(image, CGFloat(self.args!.quality))
         fileManager.createFile(atPath: urlString as String, contents: imageData, attributes: nil);
         return urlString;
     }
