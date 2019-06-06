@@ -14,7 +14,7 @@ import AVKit
         var maxImages: Int;
         init() {
             quality = 1.0
-            maxImages = 15
+            maxImages = 10
             mode = "LibraryOnly"
         }
     }
@@ -25,7 +25,8 @@ import AVKit
         gallery.delegate = self
         //configure settings!
         args=CDVImageGalleryOptions();
-        Config.Camera.imageLimit = 2
+        args.maxImages=(command.arguments[0] as AnyObject).value(forKey: "maximumImagesCount") as! Int
+        Config.Camera.imageLimit = args.maxImages
         print(args)
         if(args.mode=="LibraryOnly"){
             Config.tabsToShow = [.imageTab]
@@ -35,6 +36,14 @@ import AVKit
   func galleryControllerDidCancel(_ controller: GalleryController) {
       controller.dismiss(animated: true, completion: nil)
       gallery = nil
+    let pluginResult = CDVPluginResult(
+        status: CDVCommandStatus_ERROR,
+        messageAs: "Closed"
+    )
+    self.commandDelegate!.send(
+        pluginResult,
+        callbackId: self.returncommand.callbackId
+    )
   }
 
   func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {

@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
-exports.show=function(options,success,error){
+exports.show=function(success,error,options){
 	if (!options) {
 		options = {};
 	}
