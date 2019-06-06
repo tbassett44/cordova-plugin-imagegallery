@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-imagegallery" version="0.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-imagegallery" version="0.0.5" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-imagegallery</name>
     <js-module name="cordova-plugin-imagegallery" src="www/cordova-plugin-imagegallery.js">
         <clobbers target="cordova.plugins.cordova-plugin-imagegallery" />
     </js-module>
-    <config-file target="config.xml" parent="/*">
-        <feature name="CDVImageGallery">
-            <param name="ios-package" value="CDVImageGallery" />
-        </feature>
-    </config-file>
     <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVImageGallery">
+                <param name="ios-package" value="CDVImageGallery" />
+            </feature>
+        </config-file>
         <source-file src="src/ios/CDVImageGallery.swift" />
-        <framework src="Gallery" type="podspec" spec="~> 2.2.0"/>
+        <framework src="Gallery" type="podspec" spec="2.2.0"/>
     </platform>
 </plugin>
