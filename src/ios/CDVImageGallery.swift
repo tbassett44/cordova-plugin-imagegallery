@@ -1,17 +1,20 @@
+import UIKit
 import Gallery
+import AVFoundation
+import AVKit
 @objc(CDVImageGallery) class CDVImageGallery : CDVPlugin {
+    var gallery: GalleryController!
+    let editor: VideoEditing = VideoEditor()
   func show(command: CDVInvokedUrlCommand) {
       var pluginResult = CDVPluginResult(
          status: CDVCommandStatus_ERROR
      )
       let gallery = GalleryController()
-      gallery.delegate = self
-      present(gallery, animated: true, completion: nil)
+      viewController.present(gallery, animated: true, completion: nil)
       pluginResult = CDVPluginResult(
-         status: CDVCommandStatus_OK,
-         messageAsString: msg
+         status: CDVCommandStatus_OK
          )
-      self.commandDelegate!.sendPluginResult(
+      self.commandDelegate!.send(
          pluginResult,
          callbackId: command.callbackId
          )
@@ -32,7 +35,7 @@ import Gallery
                   let controller = AVPlayerViewController()
                   controller.player = AVPlayer(url: tempPath)
                   
-                  self.present(controller, animated: true, completion: nil)
+                  //self.present(controller, animated: true, completion: nil)
               }
           }
       }
