@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-imagegallery",
-  "version": "0.0.9",
+  "version": "0.0.91",
   "description": "Phonegap Image Gallery Plugin",
   "cordova": {
     "id": "cordova-plugin-imagegallery",
