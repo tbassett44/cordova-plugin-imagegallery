@@ -1,0 +1,31 @@
+{
+  "name": "cordova-plugin-imagegallery",
+  "version": "0.0.1",
+  "description": "Phonegap Image Gallery Plugin",
+  "cordova": {
+    "id": "cordova-plugin-imagegallery",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbassett44/cordova-plugin-imagegallery.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Tom Bassett",
+  "license": "MIT",
+  "homepage": "https://github.com/tbassett44/cordova-plugin-imagegallery"
+}
