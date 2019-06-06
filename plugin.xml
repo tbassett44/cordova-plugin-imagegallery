@@ -6,10 +6,9 @@
     </js-module>
     <config-file target="config.xml" parent="/*">
         <feature name="CDVImageGallery">
-            <param name="ios-package" value="CDVJSBridge" />
+            <param name="ios-package" value="CDVImageGallery" />
         </feature>
     </config-file>
-    <header-file src="src/ios/CDVImageGallery.h" />
-    <source-file src="src/ios/CDVImageGallery.m" />
+    <source-file src="src/ios/CDVImageGallery.swift" />
     <framework src="Gallery" type="podspec" spec="~> 2.2.0"/>
 </plugin>
