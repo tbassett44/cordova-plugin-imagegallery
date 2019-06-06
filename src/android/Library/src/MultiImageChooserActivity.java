@@ -82,7 +82,7 @@ public class MultiImageChooserActivity extends AppCompatActivity implements
         OnItemClickListener,
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String TAG = "ImagePicker";
+    private static final String TAG = "CDVImageGallery";
 
     public static final int NOLIMIT = -1;
     public static final String MAX_IMAGES_KEY = "MAX_IMAGES";
