@@ -17,7 +17,7 @@ using the Cordova / Phonegap command line interface.
 
 ## Using the plugin
 
-The plugin creates the object `window.imagePicker` with the method `getPictures(success, fail, options)`
+The plugin creates the object `window.cordova.plugins.imagegallery` with the method `show(success, fail, options)`
 
 Example - Get Full Size Images (all default options):
 ```javascript
