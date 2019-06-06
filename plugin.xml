@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-imagegallery" version="0.0.91" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-imagegallery" version="0.0.92" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-imagegallery</name>
     <js-module name="cordova-plugin-imagegallery" src="www/cordova-plugin-imagegallery.js">
-        <clobbers target="cordova.plugins.cordova-plugin-imagegallery" />
+        <clobbers target="cordova.plugins.imagegallery" />
     </js-module>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
