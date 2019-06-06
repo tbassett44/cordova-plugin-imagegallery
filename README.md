@@ -21,7 +21,7 @@ The plugin creates the object `window.cordova.plugins.imagegallery` with the met
 
 Example - Get Full Size Images (all default options):
 ```javascript
-window.cordova.modules.imagegallery(
+window.cordova.plugins.imagegallery(
   function(results) {
     for (var i = 0; i < results.length; i++) {
       console.log('Image URI: ' + results[i]);
@@ -34,7 +34,7 @@ window.cordova.modules.imagegallery(
 
 Example - Get at most 10 images scaled to width of 800:
 ```javascript
-window.cordova.modules.imagegallery(
+window.cordova.plugins.imagegallery(
   function(results) {
     for (var i = 0; i < results.length; i++) {
       console.log('Image URI: ' + results[i]);
