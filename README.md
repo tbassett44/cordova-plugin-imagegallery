@@ -1,7 +1,7 @@
 cordova-plugin-imagegallery
 ===================
 
-*Note* This plugin relies on Cordova/Phonegap CLI 9.0+ for importing the Gallery CocoaPod
+*Note* This plugin relies on Cordova/Phonegap CLI 9.0+ for importing the Gallery CocoaPod via <podspec>
 
 Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.0 and above.
 
@@ -32,7 +32,7 @@ window.cordova.plugins.imagegallery(
 );
 ```
 
-Example - Get at most 10 images scaled to width of 800:
+Example - Get at most 10 images:
 ```javascript
 window.cordova.plugins.imagegallery(
   function(results) {
@@ -42,8 +42,7 @@ window.cordova.plugins.imagegallery(
   }, function (error) {
     console.log('Error: ' + error);
   }, {
-    maximumImagesCount: 10,
-    width: 800
+    maximumImagesCount: 10
   }
 );
 ```
