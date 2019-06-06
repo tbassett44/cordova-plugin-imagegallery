@@ -1,17 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-imagegallery" version="0.0.93" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-imagegallery" version="0.0.94" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-imagegallery</name>
     <js-module name="cordova-plugin-imagegallery" src="www/cordova-plugin-imagegallery.js">
         <clobbers target="cordova.plugins.imagegallery" />
     </js-module>
     <platform name="ios">
+        <pods-config ios-min-version="9.0" use-frameworks="true">
+             <!-- optionally add private spec sources -->
+        </pods-config>
+        <!-- use the latest version of a pod -->
+        <pod name="Gallery" git="https://github.com/hyperoslo/Gallery" tag="2.2.0" />
         <config-file target="config.xml" parent="/*">
             <feature name="CDVImageGallery">
                 <param name="ios-package" value="CDVImageGallery" />
             </feature>
         </config-file>
         <source-file src="src/ios/CDVImageGallery.swift" />
-        <framework src="Gallery" type="podspec" spec="2.2.0"/>
     </platform>
     <!-- android -->
     <platform name="android">
