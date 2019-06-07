@@ -81,8 +81,8 @@ import AVKit
         //      }
     }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        controller.dismiss(animated: true, completion: nil)
-        gallery = nil
+        //controller.dismiss(animated: true, completion: nil)
+        //gallery = nil
     }
     
     func saveImageDocumentDirectory(image: UIImage, imageName: String) -> String{
