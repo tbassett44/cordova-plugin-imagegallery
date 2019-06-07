@@ -1,8 +1,9 @@
 import UIKit
 import Gallery
+import Lightbox
 import AVFoundation
 import AVKit
-@objc(CDVImageGallery) class CDVImageGallery : CDVPlugin,GalleryControllerDelegate {
+@objc(CDVImageGallery) class CDVImageGallery : CDVPlugin,GalleryControllerDelegate,LightboxControllerPageDelegate {
     var gallery: GalleryController!
     let editor: VideoEditing = VideoEditor();
     var returncommand: CDVInvokedUrlCommand!;
