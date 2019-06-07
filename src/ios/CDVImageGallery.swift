@@ -3,12 +3,13 @@ import Gallery
 import Lightbox
 import AVFoundation
 import AVKit
-@objc(CDVImageGallery) class CDVImageGallery : CDVPlugin,GalleryControllerDelegate,LightboxControllerPageDelegate {
+import SVProgressHUD
+
+@objc(CDVImageGallery) class CDVImageGallery : CDVPlugin,GalleryControllerDelegate,LightboxControllerDismissalDelegate {
     var gallery: GalleryController!
     let editor: VideoEditing = VideoEditor();
     var returncommand: CDVInvokedUrlCommand!;
     var args: CDVImageGalleryOptions!;
-    var quality: Float!;
     struct CDVImageGalleryOptions{
         var quality: Float;
         var mode: String;
@@ -134,9 +135,10 @@ import AVKit
         let lightbox = LightboxController(images: lightboxImages, startIndex: 0)
         lightbox.dismissalDelegate = self
 
-        gallery.present(lightbox, animated: true, completion: nil)
+        //gallery.present(lightbox, animated: true, completion: nil)
       }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        return
         LightboxConfig.DeleteButton.enabled = true
 
         SVProgressHUD.show()
