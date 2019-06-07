@@ -81,11 +81,6 @@ import AVKit
         //          }
         //      }
     }
-    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        //controller.dismiss(animated: true, completion: nil)
-        //gallery = nil
-    }
-    
     func saveImageDocumentDirectory(image: UIImage, imageName: String) -> String{
         let fileManager = FileManager.default
         let url = NSURL(string: NSTemporaryDirectory())
@@ -130,4 +125,30 @@ import AVKit
             )
         })
     }
+    func showLightbox(images: [UIImage]) {
+        guard images.count > 0 else {
+          return
+        }
+
+        let lightboxImages = images.map({ LightboxImage(image: $0) })
+        let lightbox = LightboxController(images: lightboxImages, startIndex: 0)
+        lightbox.dismissalDelegate = self
+
+        gallery.present(lightbox, animated: true, completion: nil)
+      }
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        LightboxConfig.DeleteButton.enabled = true
+
+        SVProgressHUD.show()
+        Image.resolve(images: images, completion: { [weak self] resolvedImages in
+          SVProgressHUD.dismiss()
+          self?.showLightbox(images: resolvedImages.compactMap({ $0 }))
+        })
+      }
+      func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        print(page)
+      }
+    func lightboxControllerWillDismiss(_ controller: LightboxController) {
+
+  }
 }
