@@ -68,19 +68,24 @@ import SVProgressHUD
         )
     }
     
-    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+   func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        NSLog("Got Video!")
         controller.dismiss(animated: true, completion: nil)
-        gallery = nil
-        
-        
-        //      editor.edit(video: video) { (editedVideo: Video?, tempPath: URL?) in
-        //          if let tempPath = tempPath {
-        //              let controller = AVPlayerViewController()
-        //              controller.player = AVPlayer(url: tempPath)
-        //
-        //              self.viewController.present(controller, animated: true, completion: nil)
-        //          }
-        //      }
+        let thisitem=self;
+        video.fetchAVAsset { asset in
+            let newObj = asset as! AVURLAsset
+            print(newObj.url.path)
+            var imagelist=[] as [String]
+            imagelist.append(newObj.url.path);
+            let pluginResult = CDVPluginResult(
+                status: CDVCommandStatus_OK,
+                messageAs: imagelist
+            )
+            thisitem.commandDelegate!.send(
+                pluginResult,
+                callbackId: thisitem.returncommand.callbackId
+            )
+        }
     }
     func saveImageDocumentDirectory(image: UIImage, imageName: String) -> String{
         let fileManager = FileManager.default
