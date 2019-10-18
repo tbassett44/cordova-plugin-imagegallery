@@ -53,7 +53,8 @@ window.cordova.plugins.imagegallery(
         // max images to be selected, defaults to 15. If this is set to 1, upon
       // selection of a single image, the plugin will return it.
       maximumImagesCount: int,
-      
+      gridSize:3,//ios only
+      cellSpacing:2,//ios only
       // quality of resized image, defaults to 100
       quality: int (0-100)
     };
