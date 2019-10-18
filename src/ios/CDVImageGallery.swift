@@ -14,9 +14,13 @@ import SVProgressHUD
         var quality: Float;
         var mode: String;
         var maxImages: Int;
+        var gridSize: Int;
+        var cellSpacing: Int;
         init() {
             quality = 1.0
             maxImages = 10
+            gridSize = 3
+            cellSpacing = 2
             mode = "LibraryOnly"
         }
     }
@@ -29,8 +33,12 @@ import SVProgressHUD
         args=CDVImageGalleryOptions();
         args.mode=(command.arguments[0] as AnyObject).value(forKey: "mode") as! String
         args.maxImages=(command.arguments[0] as AnyObject).value(forKey: "maximumImagesCount") as! Int
+        args.gridSize=(command.arguments[0] as AnyObject).value(forKey: "gridSize") as! Int
+        args.cellSpacing=(command.arguments[0] as AnyObject).value(forKey: "cellSpacing") as! Int
         args.quality=((command.arguments[0] as AnyObject).value(forKey: "quality") as! Float)/100
         Config.Camera.imageLimit = args.maxImages
+        Config.Grid.Dimension.columnCount = CGFloat(args.gridSize)
+        Config.Grid.Dimension.cellSpacing = CGFloat(args.cellSpacing)
         print(args)
         if(args.mode=="LibraryOnly"){
             Config.tabsToShow = [.imageTab]
@@ -140,10 +148,10 @@ import SVProgressHUD
         let lightbox = LightboxController(images: lightboxImages, startIndex: 0)
         lightbox.dismissalDelegate = self
 
-        //gallery.present(lightbox, animated: true, completion: nil)
+        self.viewController.present(lightbox, animated: true, completion: nil)
       }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        return
+        //return
         LightboxConfig.DeleteButton.enabled = true
 
         SVProgressHUD.show()
