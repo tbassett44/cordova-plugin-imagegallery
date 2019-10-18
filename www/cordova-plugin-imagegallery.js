@@ -8,6 +8,7 @@ exports.show=function(success,error,options){
 		maximumImagesCount: options.maximumImagesCount ? options.maximumImagesCount : 15,
         gridSize: options.gridSize ? options.gridSize : 3,
         cellSpacing: options.cellSpacing ? options.cellSpacing : 2,
+        maxDuration: options.maxDuration ? options.maxDuration : 2,
         maximumImagesCount: options.maximumImagesCount ? options.maximumImagesCount : 15,
 		width: 0,//legacy, not supported in ios
 		height:0,//legacy, not supported in ios
