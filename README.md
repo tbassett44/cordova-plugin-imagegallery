@@ -55,6 +55,7 @@ window.cordova.plugins.imagegallery(
       maximumImagesCount: int,
       gridSize:3,//ios only
       cellSpacing:2,//ios only
+      mode:'LibraryOnly|LibraryAndCamera|CameraOnly|VideoOnly|AllMedia',
       // quality of resized image, defaults to 100
       quality: int (0-100)
     };
