@@ -148,10 +148,10 @@ import SVProgressHUD
         let lightbox = LightboxController(images: lightboxImages, startIndex: 0)
         lightbox.dismissalDelegate = self
 
-        self.viewController.present(lightbox, animated: true, completion: nil)
+        //self.viewController.present(lightbox, animated: true, completion: nil)
       }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        //return
+        return
         LightboxConfig.DeleteButton.enabled = true
 
         SVProgressHUD.show()
