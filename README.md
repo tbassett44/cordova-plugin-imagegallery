@@ -5,6 +5,8 @@ cordova-plugin-imagegallery
 
 Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.0 and above.
 
+Requires Swift 4.2
+
 ## Installing the plugin
 
 The plugin conforms to the Cordova plugin specification, it can be installed
