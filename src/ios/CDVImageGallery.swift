@@ -48,12 +48,14 @@ import SVProgressHUD
             Config.tabsToShow = [.imageTab]
         }else if(args.mode=="LibraryAndCamera"){
             Config.tabsToShow = [.imageTab,.cameraTab]
+            Config.initialTab=[.imageTab]
         }else if(args.mode=="CameraOnly"){
             Config.tabsToShow = [.cameraTab]
         }else if(args.mode=="VideoOnly"){
             Config.tabsToShow = [.videoTab]
         }else if(args.mode=="AllMedia"){
             Config.tabsToShow = [.imageTab,.cameraTab,.videoTab]
+            Config.initialTab=[.imageTab]
         }else{
             let pluginResult = CDVPluginResult(
                 status: CDVCommandStatus_ERROR,
@@ -156,7 +158,7 @@ import SVProgressHUD
         //self.viewController.present(lightbox, animated: true, completion: nil)
       }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        return
+        return false
         LightboxConfig.DeleteButton.enabled = true
 
         SVProgressHUD.show()
