@@ -27,19 +27,69 @@ import Photos
             mode = "LibraryOnly"
         }
     }
+    @objc(ensurePermissions:)
     func ensurePermissions(_ command: CDVInvokedUrlCommand) {
         if #available(iOS 14.0, *) {
-            let accessLevel: PHAccessLevel = .readWrite
-            let authorizationStatus = PHPhotoLibrary.authorizationStatus(for: accessLevel)
-            print("Authorization status ")
-            print(authorizationStatus)
-            switch authorizationStatus {
+            var pluginResult = CDVPluginResult(
+                status: CDVCommandStatus_OK,
+                messageAs: "ask"
+            )
+            switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+            case .notDetermined:
+                // ask for access
+                PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                    switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+                        case .restricted, .denied:
+                            pluginResult = CDVPluginResult(
+                                status: CDVCommandStatus_OK,
+                                messageAs: "failed"
+                            )
+                        case .limited:
+                            pluginResult = CDVPluginResult(
+                                status: CDVCommandStatus_OK,
+                                messageAs: "limited"
+                            )
+                        case .authorized:
+                            pluginResult = CDVPluginResult(
+                                status: CDVCommandStatus_OK,
+                                messageAs: "authorized"
+                            )
+                        case .notDetermined:
+                            pluginResult = CDVPluginResult(
+                                status: CDVCommandStatus_OK,
+                                messageAs: "notdetermined"
+                            )
+                    }
+                    self.commandDelegate!.send(
+                        pluginResult,
+                        callbackId: command.callbackId
+                    )
+                }
+                return
+            case .restricted, .denied:
+                pluginResult = CDVPluginResult(
+                    status: CDVCommandStatus_OK,
+                    messageAs: "failed"
+                )
+            case .authorized:
+                // we have full access
+                pluginResult = CDVPluginResult(
+                    status: CDVCommandStatus_OK,
+                    messageAs: "authorized"
+                )
+            // new option:
             case .limited:
-                print("limited authorization granted")
-            default:
-                //FIXME: Implement handling for all authorizationStatus values
-                print("Not implemented")
+                // we only got access to a part of the library
+                pluginResult = CDVPluginResult(
+                    status: CDVCommandStatus_OK,
+                    messageAs: "limited"
+                )
+                
             }
+            self.commandDelegate!.send(
+                pluginResult,
+                callbackId: command.callbackId
+            )
         }else{//if less than ios14, normal flow works!
             let pluginResult = CDVPluginResult(
                 status: CDVCommandStatus_OK,

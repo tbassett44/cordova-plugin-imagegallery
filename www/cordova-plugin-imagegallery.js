@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
-exports.ensurePermissions = function(callback) {
+exports.ensurePermissions = function(callback,failureCallback) {
   return exec(callback, failureCallback, "CDVImageGallery", "ensurePermissions", []);
 };
 exports.show=function(success,error,options){
