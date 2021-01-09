@@ -27,26 +27,29 @@ import Photos
             mode = "LibraryOnly"
         }
     }
-    func getLimitedPermission(_ command: CDVInvokedUrlCommand) {
-        var status = ""
+    func ensurePermissions(_ command: CDVInvokedUrlCommand) {
         if #available(iOS 14.0, *) {
             let accessLevel: PHAccessLevel = .readWrite
             let authorizationStatus = PHPhotoLibrary.authorizationStatus(for: accessLevel)
+            print("Authorization status ")
+            print(authorizationStatus)
             switch authorizationStatus {
             case .limited:
-                status="limited"
+                print("limited authorization granted")
             default:
-                status="notlimited"
+                //FIXME: Implement handling for all authorizationStatus values
+                print("Not implemented")
             }
+        }else{//if less than ios14, normal flow works!
+            let pluginResult = CDVPluginResult(
+                status: CDVCommandStatus_OK,
+                messageAs: "success"
+            )
+            self.commandDelegate!.send(
+                pluginResult,
+                callbackId: command.callbackId
+            )
         }
-        let pluginResult = CDVPluginResult(
-            status: CDVCommandStatus_OK,
-            messageAs: status
-        )
-        self.commandDelegate!.send(
-            pluginResult,
-            callbackId: self.returncommand.callbackId
-        )
     }
     @objc(show:)
     func show(_ command: CDVInvokedUrlCommand) {
@@ -180,7 +183,7 @@ import Photos
         //self.viewController.present(lightbox, animated: true, completion: nil)
       }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        return;
+        return
         LightboxConfig.DeleteButton.enabled = true
 
         SVProgressHUD.show()
