@@ -1,6 +1,9 @@
 var exec = require('cordova/exec');
-exports.ensurePermissions = function(callback,failureCallback) {
+exports.ensurePermissions = function(callback,failureCallback) {//ios
   return exec(callback, failureCallback, "CDVImageGallery", "ensurePermissions", []);
+};
+exports.hasReadPermission = function(callback,failureCallback) {//android
+  return exec(callback, failureCallback, "CDVImageGallery", "hasReadPermission", []);
 };
 exports.show=function(success,error,options){
 	if (!options) {
