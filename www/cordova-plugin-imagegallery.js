@@ -2,8 +2,8 @@ var exec = require('cordova/exec');
 exports.hasReadPermission = function(callback) {
   return exec(callback, null, "CDVImageGallery", "hasReadPermission", []);
 };
-exports.requestReadPermission = function(callback, failureCallback) {
-  return exec(callback, failureCallback, "CDVImageGallery", "requestReadPermission", []);
+exports.getLimitedPermission = function(callback) {
+  return exec(callback, failureCallback, "CDVImageGallery", "getLimitedPermission", []);
 };
 exports.show=function(success,error,options){
 	if (!options) {

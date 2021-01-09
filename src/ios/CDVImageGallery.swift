@@ -4,6 +4,7 @@ import Lightbox
 import AVFoundation
 import AVKit
 import SVProgressHUD
+import Photos
 
 @objc(CDVImageGallery) class CDVImageGallery : CDVPlugin,GalleryControllerDelegate,LightboxControllerDismissalDelegate {
     var gallery: GalleryController!
@@ -25,6 +26,27 @@ import SVProgressHUD
             maxDuration = 100000
             mode = "LibraryOnly"
         }
+    }
+    func getLimitedPermission(_ command: CDVInvokedUrlCommand) {
+        var status = ""
+        if #available(iOS 14.0, *) {
+            let accessLevel: PHAccessLevel = .readWrite
+            let authorizationStatus = PHPhotoLibrary.authorizationStatus(for: accessLevel)
+            switch authorizationStatus {
+            case .limited:
+                status="limited"
+            default:
+                status="notlimited"
+            }
+        }
+        let pluginResult = CDVPluginResult(
+            status: CDVCommandStatus_OK,
+            messageAs: status
+        )
+        self.commandDelegate!.send(
+            pluginResult,
+            callbackId: self.returncommand.callbackId
+        )
     }
     @objc(show:)
     func show(_ command: CDVInvokedUrlCommand) {
@@ -48,14 +70,14 @@ import SVProgressHUD
             Config.tabsToShow = [.imageTab]
         }else if(args.mode=="LibraryAndCamera"){
             Config.tabsToShow = [.imageTab,.cameraTab]
-            Config.initialTab=[.imageTab]
+            Config.initialTab = .imageTab
         }else if(args.mode=="CameraOnly"){
             Config.tabsToShow = [.cameraTab]
         }else if(args.mode=="VideoOnly"){
             Config.tabsToShow = [.videoTab]
         }else if(args.mode=="AllMedia"){
             Config.tabsToShow = [.imageTab,.cameraTab,.videoTab]
-            Config.initialTab=[.imageTab]
+            Config.initialTab = .imageTab
         }else{
             let pluginResult = CDVPluginResult(
                 status: CDVCommandStatus_ERROR,
@@ -158,7 +180,7 @@ import SVProgressHUD
         //self.viewController.present(lightbox, animated: true, completion: nil)
       }
     func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        return false
+        return;
         LightboxConfig.DeleteButton.enabled = true
 
         SVProgressHUD.show()
