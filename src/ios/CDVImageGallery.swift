@@ -110,13 +110,13 @@ import Photos
         args=CDVImageGalleryOptions();
         args.mode=(command.arguments[0] as AnyObject).value(forKey: "mode") as! String
         args.maxImages=(command.arguments[0] as AnyObject).value(forKey: "maximumImagesCount") as! Int
-        args.gridSize=(command.arguments[0] as AnyObject).value(forKey: "gridSize") as! Int
-        args.cellSpacing=(command.arguments[0] as AnyObject).value(forKey: "cellSpacing") as! Int
+        //args.gridSize=(command.arguments[0] as AnyObject).value(forKey: "gridSize") as! Int
+        //args.cellSpacing=(command.arguments[0] as AnyObject).value(forKey: "cellSpacing") as! Int
         args.quality=((command.arguments[0] as AnyObject).value(forKey: "quality") as! Float)/100
         args.maxDuration=((command.arguments[0] as AnyObject).value(forKey: "maxDuration") as! Int)
         Config.Camera.imageLimit = args.maxImages
-        Config.Grid.Dimension.columnCount = CGFloat(args.gridSize)
-        Config.Grid.Dimension.cellSpacing = CGFloat(args.cellSpacing)
+        //Config.Grid.Dimension.columnCount = CGFloat(args.gridSize)
+        //Config.Grid.Dimension.cellSpacing = CGFloat(args.cellSpacing)
         Config.VideoEditor.maximumDuration=TimeInterval(args.maxDuration);
         print(args)
         if(args.mode=="LibraryOnly"){
